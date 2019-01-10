@@ -8,17 +8,17 @@ pipeline {
   stages {
     stage('Build result') {
       steps {
-        sh 'docker build -t dockersamples/result ./result'
+        sh 'sudo docker build -t dockersamples/result ./result'
       }
     } 
     stage('Build vote') {
       steps {
-        sh 'docker build -t dockersamples/vote ./vote'
+        sh 'sudo docker build -t dockersamples/vote ./vote'
       }
     }
     stage('Build worker') {
       steps {
-        sh 'docker build -t dockersamples/worker ./worker'
+        sh 'sudo docker build -t dockersamples/worker ./worker'
       }
     }
     stage('Push result image') {
@@ -27,7 +27,7 @@ pipeline {
       }
       steps {
         withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
-          sh 'docker push dockersamples/result'
+          sh 'sudo docker push dockersamples/result'
         }
       }
     }
@@ -37,7 +37,7 @@ pipeline {
       }
       steps {
         withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
-          sh 'docker push dockersamples/vote'
+          sh 'sudo docker push dockersamples/vote'
         }
       }
     }
@@ -47,7 +47,7 @@ pipeline {
       }
       steps {
         withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
-          sh 'docker push dockersamples/worker'
+          sh 'sudo docker push dockersamples/worker'
         }
       }
     }
