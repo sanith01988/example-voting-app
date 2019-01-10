@@ -1,3 +1,4 @@
+
 pipeline {
   agent {
     node {
@@ -52,9 +53,8 @@ pipeline {
     }
     post {
       always {
-    clearWs()  
+        cleanWS()
       }
     }
-  }
   }
 }
